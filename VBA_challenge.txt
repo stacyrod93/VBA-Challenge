@@ -1,0 +1,133 @@
+Sub VBA_challenge()
+
+For Each ws In Worksheets
+
+ 
+ Dim i, j As Long
+ Dim vol As Double
+ Dim ticker As String
+ Dim lastrow As Long
+ Dim yearly_chng As Double
+ Dim percent_chng As Double
+ Dim open_price As Double
+ Dim close_price As Double
+ Dim open_price_row As Long
+
+ 
+ ws.Range("I1").Value = "Ticker"
+ ws.Range("J1").Value = "Yearly Change"
+ ws.Range("K1").Value = "Percent Change"
+ ws.Range("L1").Value = "Total Stock Value"
+
+ 
+ totalv = 0
+ j = 2
+ open_price_row = 2
+
+ 
+ lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+ 
+ For i = 2 To lastrow
+     
+     
+     If ws.Range("A" & i + 1).Value = ws.Range("A" & i).Value Then
+
+         
+         totalv = totalv + ws.Range("G" & i).Value
+
+     Else
+         
+         ticker = ws.Range("A" & i).Value
+
+         
+         open_price = ws.Range("C" & open_price_row)
+         close_price = ws.Range("F" & i)
+         yearly_chng = close_price - oprice
+
+         
+         If oen_price = 0 Then
+            percent_chng = 0
+         Else
+            percent_chng = yearly_chng / open_price
+         End If
+
+         ws.Range("I" & j).Value = ticker
+         ws.Range("L" & j).Value = vol + ws.Range("G" & i).Value
+         ws.Range("J" & j).Value = yearly_chng
+         ws.Range("K" & j).Value = percent_chng
+         ws.Range("K" & j).NumberFormat = "0.00%"
+         
+        
+         If ws.Range("J" & j).Value > 0 Then
+            ws.Range("J" & j).Interior.ColorIndex = 4
+         Else
+            ws.Range("J" & j).Interior.ColorIndex = 3
+         End If
+
+         
+         j = j + 1
+         vol = 0
+         open_price_row = i + 1
+         
+     End If
+ 
+ Next i
+ 
+ Next ws
+
+End Sub
+
+ lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+For j = 2 To lastrow
+     
+   
+     If ws.Range("A" & i + 1).Value = ws.Range("A" & i).Value Then
+
+         
+         vol = vol + ws.Range("G" & i).Value
+
+     Else
+        
+         ticker = ws.Range("A" & i).Value
+
+         
+         year_open = ws.Range("C" & year_open_row)
+         year_close = ws.Range("F" & i)
+         yearly_change = year_close - year_open
+
+         
+         If year_open = 0 Then
+            percent_change = 0
+         Else
+            percent_change = yearly_change / year_open
+         
+         End If
+
+
+         ws.Range("I" & j).Value = ticker
+         ws.Range("L" & j).Value = vol + ws.Range("G" & i).Value
+         ws.Range("J" & j).Value = yearly_change
+         ws.Range("K" & j).Value = percent_change
+         ws.Range("K" & j).NumberFormat = "0.00%"
+         
+         
+         If ws.Range("J" & j).Value > 0 Then
+            ws.Range("J" & j).Interior.ColorIndex = 4
+         Else
+            ws.Range("J" & j).Interior.ColorIndex = 3
+         
+         End If
+         
+
+   
+   Next j
+   
+   
+
+
+Next ws
+
+
+End Sub
