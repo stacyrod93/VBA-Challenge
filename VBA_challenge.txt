@@ -43,10 +43,10 @@ For Each ws In Worksheets
          
          open_price = ws.Range("C" & open_price_row)
          close_price = ws.Range("F" & i)
-         yearly_chng = close_price - oprice
+         yearly_chng = close_price - open_price
 
          
-         If oen_price = 0 Then
+         If open_price = 0 Then
             percent_chng = 0
          Else
             percent_chng = yearly_chng / open_price
